@@ -10,81 +10,83 @@ public class Main {
     public static void main(String[] args) {
         new Thread(() -> {
             for (int i = 0; i < 100_000; i++) {
+                String letterForQueue1 = generateText("abc", 1);
+                String letterForQueue2 = generateText("abc", 1);
+                String letterForQueue3 = generateText("abc", 1);
                 try {
-                    queue1.put(generateText("abc", 1));
-                    queue2.put(generateText("abc", 1));
-                    queue3.put(generateText("abc", 1));
+                    queue1.put(letterForQueue1);
+                    queue2.put(letterForQueue2);
+                    queue3.put(letterForQueue3);
+                    System.out.println("добавлена " + i + " буква");
                 } catch (InterruptedException e) {
                     return;
                 }
             }
-
         }).start();
-
         new Thread(() -> {
-            int countA1 = 0;
-            int countA2 = 0;
-            int countA3 = 0;
-            for (int j = 0; j < 100; j++) {
+            int countA = 0;
+            for (int i = 0; i < 100_000; i++) {
                 try {
                     if (queue1.take().equals("a")) {
-                        countA1++;
+                        countA++;
                     }
                     if (queue2.take().equals("a")) {
-                        countA2++;
+                        countA++;
                     }
                     if (queue3.take().equals("a")) {
-                        countA3++;
+                        countA++;
                     }
 
                 } catch (InterruptedException e) {
                     return;
                 }
+                System.out.println("букв a " + countA);
             }
-        }).start();
 
+        }).start();
         new Thread(() -> {
-            int countB1 = 0;
-            int countB2 = 0;
-            int countB3 = 0;
-            for (int j = 0; j < 100; j++) {
+            int countB = 0;
+            for (int i = 0; i < 100_000; i++) {
                 try {
                     if (queue1.take().equals("b")) {
-                        countB1++;
+                        countB++;
                     }
                     if (queue2.take().equals("b")) {
-                        countB2++;
+                        countB++;
                     }
                     if (queue3.take().equals("b")) {
-                        countB3++;
+                        countB++;
                     }
 
                 } catch (InterruptedException e) {
                     return;
                 }
+                System.out.println("букв b " + countB);
             }
+
         }).start();
         new Thread(() -> {
-            int countC1 = 0;
-            int countC2 = 0;
-            int countC3 = 0;
-            for (int j = 0; j < 100; j++) {
+            int countC = 0;
+            for (int i = 0; i < 100_000; i++) {
                 try {
                     if (queue1.take().equals("c")) {
-                        countC1++;
+                        countC++;
                     }
                     if (queue2.take().equals("c")) {
-                        countC2++;
+                        countC++;
                     }
                     if (queue3.take().equals("c")) {
-                        countC3++;
+                        countC++;
                     }
 
                 } catch (InterruptedException e) {
                     return;
                 }
+                System.out.println("букв с " + countC);
             }
+
         }).start();
+
     }
 
     public static String generateText(String letters, int length) {
