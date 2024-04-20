@@ -30,13 +30,6 @@ public class Main {
                     if (queue1.take().equals("a")) {
                         countA++;
                     }
-                    if (queue2.take().equals("a")) {
-                        countA++;
-                    }
-                    if (queue3.take().equals("a")) {
-                        countA++;
-                    }
-
                 } catch (InterruptedException e) {
                     return;
                 }
@@ -48,16 +41,9 @@ public class Main {
             int countB = 0;
             for (int i = 0; i < 100_000; i++) {
                 try {
-                    if (queue1.take().equals("b")) {
-                        countB++;
-                    }
                     if (queue2.take().equals("b")) {
                         countB++;
                     }
-                    if (queue3.take().equals("b")) {
-                        countB++;
-                    }
-
                 } catch (InterruptedException e) {
                     return;
                 }
@@ -69,16 +55,9 @@ public class Main {
             int countC = 0;
             for (int i = 0; i < 100_000; i++) {
                 try {
-                    if (queue1.take().equals("c")) {
-                        countC++;
-                    }
-                    if (queue2.take().equals("c")) {
-                        countC++;
-                    }
                     if (queue3.take().equals("c")) {
                         countC++;
                     }
-
                 } catch (InterruptedException e) {
                     return;
                 }
